@@ -181,7 +181,7 @@ function TitleSlide({ slide }: Props) {
         </ul>
       )}
       <div className="absolute bottom-8 right-10 text-xs text-muted-foreground font-mono opacity-50">
-        7-Day HTML Bootcamp
+        HTML Bootcamp
       </div>
     </div>
   );
@@ -292,14 +292,37 @@ function ActivitySlide({ slide }: Props) {
   );
 }
 
+// ─── Speaker Notes ─────────────────────────────────────────────────────────
+
+function SpeakerNotes({ notes }: { notes: string }) {
+  return (
+    <div className="mx-12 mb-6 rounded-xl border border-primary/20 bg-primary/5 px-4 py-3">
+      <div className="flex items-center gap-2 mb-1.5">
+        <span className="text-base">🎤</span>
+        <span className="text-xs font-semibold uppercase tracking-wider text-primary">Speaker Notes</span>
+      </div>
+      <p className="text-sm text-foreground/70 leading-relaxed whitespace-pre-line">{notes}</p>
+    </div>
+  );
+}
+
 // ─── Main Dispatcher ───────────────────────────────────────────────────────
 
 export default function SlideRenderer({ slide }: Props) {
+  let content: React.ReactNode;
   switch (slide.type) {
-    case 'title': return <TitleSlide slide={slide} />;
-    case 'goals': return <GoalsSlide slide={slide} />;
-    case 'activity': return <ActivitySlide slide={slide} />;
-    case 'code': return <CodeSlide slide={slide} />;
-    default: return <ConceptSlide slide={slide} />;
+    case 'title': content = <TitleSlide slide={slide} />; break;
+    case 'goals': content = <GoalsSlide slide={slide} />; break;
+    case 'activity': content = <ActivitySlide slide={slide} />; break;
+    case 'code': content = <CodeSlide slide={slide} />; break;
+    default: content = <ConceptSlide slide={slide} />; break;
   }
+  return (
+    <div className="flex flex-col h-full">
+      <div className="flex-1 min-h-0 overflow-y-auto">
+        {content}
+      </div>
+      {slide.speakerNotes && <SpeakerNotes notes={slide.speakerNotes} />}
+    </div>
+  );
 }

@@ -36,7 +36,7 @@ export default function Sidebar({ activeDay, activeSlide, onDayChange, onSlideCh
               >
                 <span className="text-xl w-7 text-center">{DAY_ICONS[day]}</span>
                 <div className="flex-1 min-w-0">
-                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Day {day}</div>
+                  <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{day === 0 ? 'Intro' : `Day ${day}`}</div>
                   <div className="text-sm font-medium truncate">{DAY_TITLES[day]}</div>
                 </div>
                 <span className="text-xs text-muted-foreground font-mono shrink-0">{slides.length}</span>
@@ -70,7 +70,7 @@ export default function Sidebar({ activeDay, activeSlide, onDayChange, onSlideCh
       <div className="px-5 py-4 border-t border-sidebar-border">
         <p className="text-xs text-muted-foreground leading-relaxed">
           Built for curious humans 🚀<br />
-          Total slides: 56 across 7 days
+          Total slides: 64 across 8 sessions
         </p>
       </div>
     </aside>
