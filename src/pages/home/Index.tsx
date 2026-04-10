@@ -6,7 +6,7 @@ import SlideNav from '@/components/SlideNav';
 import { getSlidesForDay, DAYS } from '@/data/slides';
 
 export default function Index() {
-  const [activeDay, setActiveDay] = useState(1);
+  const [activeDay, setActiveDay] = useState(DAYS[0]);
   const [activeSlide, setActiveSlide] = useState(0);
   const [direction, setDirection] = useState(1);
 
@@ -17,9 +17,12 @@ export default function Index() {
     setDirection(1);
     if (activeSlide < slides.length - 1) {
       setActiveSlide(prev => prev + 1);
-    } else if (activeDay < 7) {
-      setActiveDay(prev => prev + 1);
-      setActiveSlide(0);
+    } else {
+      const currentDayIndex = DAYS.indexOf(activeDay);
+      if (currentDayIndex < DAYS.length - 1) {
+        setActiveDay(DAYS[currentDayIndex + 1]);
+        setActiveSlide(0);
+      }
     }
   }, [activeSlide, slides.length, activeDay]);
 
@@ -27,11 +30,14 @@ export default function Index() {
     setDirection(-1);
     if (activeSlide > 0) {
       setActiveSlide(prev => prev - 1);
-    } else if (activeDay > 1) {
-      const prevDay = activeDay - 1;
-      const prevSlides = getSlidesForDay(prevDay);
-      setActiveDay(prevDay);
-      setActiveSlide(prevSlides.length - 1);
+    } else {
+      const currentDayIndex = DAYS.indexOf(activeDay);
+      if (currentDayIndex > 0) {
+        const prevDay = DAYS[currentDayIndex - 1];
+        const prevSlides = getSlidesForDay(prevDay);
+        setActiveDay(prevDay);
+        setActiveSlide(prevSlides.length - 1);
+      }
     }
   }, [activeSlide, activeDay]);
 

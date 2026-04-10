@@ -23,9 +23,181 @@ export interface Slide {
   preview?: string;
   analogy?: string;
   badge?: string;
+  speakerNotes?: string;
 }
 
 export const ALL_SLIDES: Slide[] = [
+  // ─── INTRO: HTML Basics and Structure (Beginner Session) ─────────────────
+  {
+    id: 101, day: 0, slideInDay: 1,
+    type: 'title',
+    title: 'HTML Basics and Structure',
+    subtitle: 'Introduction to Web Development',
+    badge: '🌱 Beginner Friendly',
+    bullets: ['No coding experience needed', 'Simple and easy to follow', '20–25 minute session'],
+    speakerNotes: `Welcome everyone! 😊 I'm so glad you're here today.
+Don't worry if you have never coded before — this session is made just for you.
+Think of learning HTML like learning to write with special building blocks. By the end of today, you will know what HTML is and how to make your very first webpage.
+Let's get started!`,
+  },
+  {
+    id: 102, day: 0, slideInDay: 2,
+    type: 'goals',
+    title: 'What We Will Learn Today',
+    bullets: [
+      'What is HTML and what does it stand for',
+      'Understand the basic structure of an HTML page',
+      'Learn the most common HTML tags',
+      'Create a simple webpage — yes, a real one! 🎉',
+    ],
+    speakerNotes: `Let's go through what we are going to cover today.
+By the end of this session, you will be able to answer "What is HTML?" at a dinner party 😄.
+You will also understand the building blocks of any webpage you visit.
+And best of all — we will actually build something together!
+These four goals are simple, fun, and achievable in 20 minutes. Let's dive in.`,
+  },
+  {
+    id: 103, day: 0, slideInDay: 3,
+    type: 'concept',
+    title: 'What is HTML?',
+    analogy: '🏗️ Think of a webpage like a house. HTML is the bricks and walls — the basic structure. Without it, there is nothing to look at!',
+    bullets: [
+      '**HTML** stands for **HyperText Markup Language**',
+      'It is used to **create web pages**',
+      'It tells the browser **what to display** — headings, text, images, and more',
+      'Every website you visit is built with HTML',
+    ],
+    speakerNotes: `HTML stands for HyperText Markup Language. Let's break that down.
+"HyperText" just means text with links — like when you click a word and go to another page.
+"Markup Language" means we use special labels (called tags) to describe what things are.
+Real-life example: Imagine writing a letter. You might underline the heading, circle important words. HTML does the same thing — but for web pages.
+And yes — every website you've ever visited uses HTML. Instagram, YouTube, Google — they all start with HTML!`,
+  },
+  {
+    id: 104, day: 0, slideInDay: 4,
+    type: 'code',
+    title: 'Basic Structure of HTML',
+    code: `<!DOCTYPE html>
+<html>
+  <head>
+    <title>My First Page</title>
+  </head>
+  <body>
+    <h1>Hello World</h1>
+    <p>Welcome to my webpage!</p>
+  </body>
+</html>`,
+    codeLanguage: 'html',
+    bullets: [
+      '`<!DOCTYPE html>` — tells the browser this is an HTML page',
+      '`<html>` — the starting point of everything',
+      '`<head>` — hidden information (like the page title)',
+      '`<body>` — everything the user can **see** on the page',
+    ],
+    speakerNotes: `This is what every HTML page looks like on the inside. Let's go through each part step by step.
+DOCTYPE: This is like showing your ID at the door — it tells the browser "Hey, I'm an HTML page!"
+<html>: This is the container for the whole page. Everything lives inside it.
+<head>: Think of this as the "behind the scenes" area. Visitors don't see it, but it has important info like the page title.
+<body>: This is the stage! Everything inside here is what the visitor sees on screen.
+You can think of it like a play: the head is the backstage area, and the body is the actual performance.`,
+  },
+  {
+    id: 105, day: 0, slideInDay: 5,
+    type: 'concept',
+    title: 'Common HTML Tags',
+    bullets: [
+      '**Headings** — `<h1>` is the biggest, `<h6>` is the smallest',
+      '**Paragraph** — `<p>` is for regular text, like sentences',
+      '**Line break** — `<br>` adds a new line (like pressing Enter)',
+      '**Comment** — `<!-- this is a comment -->` is a note only you can see',
+    ],
+    callout: { kind: 'tip', text: 'Tags usually come in pairs: <p>Hello</p>. The first one opens, the second one (with /) closes.' },
+    speakerNotes: `Now let's look at the most common tags you'll use all the time.
+Headings: Just like in a newspaper — the big title at the top is h1. Sub-headings are h2, h3, and so on.
+Paragraph: Every time you write a block of text on a webpage, it goes inside <p> tags.
+Line break: <br> is like pressing Enter on your keyboard. It starts a new line.
+Comment: Comments are invisible to visitors — only you can see them in the code. Great for leaving notes to yourself!
+Remember: most tags need an opening AND a closing tag. The closing tag has a / before the name.`,
+  },
+  {
+    id: 106, day: 0, slideInDay: 6,
+    type: 'code',
+    title: 'Code Example — Your First Webpage',
+    code: `<!DOCTYPE html>
+
+<html>
+<head>
+  <title>My First Page</title>
+</head>
+<body>
+  <h1>Hello World</h1>
+  <p>This is my first webpage</p>
+</body>
+</html>`,
+    codeLanguage: 'html',
+    bullets: [
+      '`<!DOCTYPE html>` — this is an HTML5 page',
+      '`<title>` — shows in the browser tab',
+      '`<h1>` — big bold heading on the page',
+      '`<p>` — a paragraph of text below the heading',
+    ],
+    speakerNotes: `Let's look at a complete, working example together!
+Walk through each line slowly with the students.
+DOCTYPE: Tells the browser what kind of file this is.
+<html>: Opens the HTML document.
+<head> / <title>: The title "My First Page" is what shows up in the browser's tab at the top.
+<body>: Everything the visitor sees goes here.
+<h1>Hello World</h1>: This shows a big heading that says "Hello World" on the page.
+<p>This is my first webpage</p>: This shows a paragraph of text.
+Closing tags </html>, </body>, </head>: They close off each section — like putting a lid on a box.
+Point out: the indentation makes the code easier to read. It doesn't change how the page looks.`,
+  },
+  {
+    id: 107, day: 0, slideInDay: 7,
+    type: 'concept',
+    title: 'What the Browser Shows',
+    analogy: '👀 The browser reads your HTML like a recipe and cooks up a webpage for the visitor to see.',
+    bullets: [
+      'The `<h1>` tag shows as a **large, bold heading**: "Hello World"',
+      'The `<p>` tag shows as **normal text** below: "This is my first webpage"',
+      'The `<title>` text appears in the **browser tab** — not on the page itself',
+      'The browser hides all the tags — visitors only see the content inside them',
+    ],
+    speakerNotes: `This is the exciting part — let's see what our code looks like to a real visitor!
+When someone opens our HTML file in a browser:
+They see a big heading "Hello World" at the top.
+Below that, a smaller line of text: "This is my first webpage."
+Up in the browser tab, they see the title "My First Page."
+None of the tags (<h1>, <p>, etc.) are visible — the browser uses them as instructions but doesn't show them to visitors.
+If you have a browser open, this is a great moment to show them a live demo!`,
+  },
+  {
+    id: 108, day: 0, slideInDay: 8,
+    type: 'activity',
+    title: 'Your Turn! 🎉',
+    activity: {
+      prompt: 'You have 5 minutes — try building your first HTML page!',
+      steps: [
+        'Open a text editor (Notepad, TextEdit, or VS Code)',
+        'Type the full HTML structure: `<!DOCTYPE html>`, `<html>`, `<head>`, `<body>`',
+        'Add a `<title>` with your name inside the `<head>`',
+        'Add an `<h1>` heading — write anything you like!',
+        'Add a `<p>` paragraph — tell us one fun fact about yourself',
+        'Save the file as `index.html` and open it in a browser',
+      ],
+    },
+    callout: { kind: 'tip', text: 'Don\'t worry about mistakes! Every error is a learning step. Just try and see what happens 😊' },
+    speakerNotes: `Now it's their turn! Walk around and help students as they work.
+Encourage everyone — even if the code doesn't look perfect, they're learning!
+Common things to watch for:
+Missing closing tags (like </h1> or </body>)
+Forgetting to save the file as .html (not .txt)
+Not opening it in a browser
+If someone finishes early: challenge them to add a second heading (<h2>) or a line break (<br>).
+After 5 minutes, ask a volunteer to share their screen and show their first webpage.
+Celebrate every attempt — this is their very first webpage! 🎉`,
+  },
+
   // ─── DAY 1: Internet Fundamentals & Markup Basics ────────────────────────
   {
     id: 1, day: 1, slideInDay: 1,
@@ -903,9 +1075,10 @@ export const ALL_SLIDES: Slide[] = [
   },
 ];
 
-export const DAYS = [1, 2, 3, 4, 5, 6, 7];
+export const DAYS = [0, 1, 2, 3, 4, 5, 6, 7];
 
 export const DAY_TITLES: Record<number, string> = {
+  0: 'HTML Basics & Structure',
   1: 'Internet & Markup Basics',
   2: 'Semantic HTML & Text',
   3: 'Links & Navigation',
@@ -916,6 +1089,7 @@ export const DAY_TITLES: Record<number, string> = {
 };
 
 export const DAY_ICONS: Record<number, string> = {
+  0: '🌱',
   1: '🌐',
   2: '📝',
   3: '🔗',
