@@ -1,0 +1,211 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+==========================================================================
+【AI HANDOVER NOTE】
+1. DESIGN PHILOSOPHY:
+   - Developer-First Education: This is a teaching deck for aspiring developers, not a corporate presentation. The aesthetic should feel like a modern code editor meets a friendly tech blog.
+   - Dark-Mode Native: Primary experience is dark theme (light mode available but secondary). This reduces eye strain during extended learning sessions and aligns with developer tool aesthetics.
+   - One-Concept-Per-Slide Clarity: Each slide is a focused learning moment. No information overload. Clean hierarchy with bold headings, concise bullets, and breathing room.
+   - Syntax-Highlighted Code as First-Class Citizen: Code blocks are not afterthoughts—they're the hero content. Must be readable, properly colored, and feel like VS Code.
+
+2. TYPOGRAPHY:
+   - Inter (Sans): Modern, highly legible geometric sans-serif. Excellent at all sizes from body text to large headings. Its neutral professionalism balances the casual tone without feeling corporate. Wide weight range (400-800) allows clear hierarchy.
+   - JetBrains Mono: Purpose-built for code. Excellent ligature support, clear distinction between similar characters (0/O, 1/l/I). This is what students will see in their IDEs, creating visual consistency between slides and practice.
+   - Hierarchy: Headings use Inter 700-800, body uses Inter 400-500, code uses JetBrains Mono 400-500.
+
+3. COLOR SYSTEM:
+   - Brand Hue (160): Vibrant teal-green evokes growth, learning, and tech energy. Not the cliché blue of corporate training. This hue sits between traditional "success green" and modern "tech cyan"—perfect for an educational dev tool.
+   - --brand maps to --accent (interactive elements, highlights, callout boxes) and --ring (focus states).
+   - --primary is a warmer orange (Hue 25) for CTAs and "try it yourself" prompts—creates urgency and action without aggression.
+   - Semantic colors: destructive (red, Hue 10) for "common mistakes", success (green, Hue 150) for "quick tips", warning (amber, Hue 45) for important notes.
+   - Dark mode uses elevated chroma for accent colors to pop against dark backgrounds. Light mode uses softer, more muted tones for comfort.
+
+4. USAGE GUIDE:
+   - Layout: Full-viewport slides (100vw/100vh). Use Bento-style cards for code examples and callout boxes with subtle borders and backdrop-blur for depth.
+   - Sidebar Navigation: Days 1-7 in left sidebar (--sidebar tokens). Current day highlighted with --sidebar-accent. Smooth transitions between slides.
+   - Code Blocks: Use --muted background with --muted-foreground for comments, --accent for keywords, --primary for strings, --chart-1 through --chart-5 for syntax highlighting variety.
+   - Callout Boxes: "💡 Quick Tip" uses --success background with low opacity, "⚠️ Common Mistake" uses --destructive background with low opacity. Both have rim-light effect (1px top border with higher opacity).
+   - Typography Scale: Slide titles 2.5rem (Inter 800), section headings 1.75rem (Inter 700), body 1.125rem (Inter 400), code 0.95rem (JetBrains Mono 400).
+   - Spacing: Generous padding (3rem on slide containers), 1.5rem between bullet points, 2rem between sections.
+   - Effects: Subtle backdrop-blur (8px) on cards, 1px rim-light on elevated surfaces using --border with 40% opacity, smooth transitions (200ms ease-out) on interactive elements.
+==========================================================================
+*/
+
+:root {
+  /* Typography */
+  --font-sans: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  
+  /* Radius */
+  --radius: 0.75rem;
+
+  /* Core UI Tokens */
+  --background: oklch(0.99 0.002 160);
+  --foreground: oklch(0.15 0.01 160);
+  --card: oklch(0.97 0.005 160);
+  --card-foreground: oklch(0.15 0.01 160);
+  --popover: oklch(0.98 0.003 160);
+  --popover-foreground: oklch(0.15 0.01 160);
+  --primary: oklch(0.58 0.18 25);
+  --primary-foreground: oklch(0.99 0.002 25);
+  --secondary: oklch(0.92 0.01 160);
+  --secondary-foreground: oklch(0.20 0.015 160);
+  --muted: oklch(0.94 0.008 160);
+  --muted-foreground: oklch(0.48 0.02 160);
+  --accent: oklch(0.65 0.16 160);
+  --accent-foreground: oklch(0.99 0.002 160);
+  --destructive: oklch(0.60 0.20 10);
+  --destructive-foreground: oklch(0.99 0.002 10);
+  --border: oklch(0.88 0.012 160);
+  --input: oklch(0.90 0.01 160);
+  --ring: oklch(0.65 0.16 160);
+  
+  /* Chart Tokens */
+  --chart-1: oklch(0.62 0.18 260);
+  --chart-2: oklch(0.58 0.20 340);
+  --chart-3: oklch(0.60 0.16 150);
+  --chart-4: oklch(0.64 0.18 45);
+  --chart-5: oklch(0.56 0.19 200);
+  
+  /* Sidebar Tokens */
+  --sidebar: oklch(0.96 0.006 160);
+  --sidebar-foreground: oklch(0.25 0.015 160);
+  --sidebar-primary: oklch(0.65 0.16 160);
+  --sidebar-primary-foreground: oklch(0.99 0.002 160);
+  --sidebar-accent: oklch(0.92 0.01 160);
+  --sidebar-accent-foreground: oklch(0.20 0.015 160);
+  --sidebar-border: oklch(0.88 0.012 160);
+  --sidebar-ring: oklch(0.65 0.16 160);
+}
+
+.dark {
+  --background: oklch(0.12 0.015 160);
+  --foreground: oklch(0.92 0.008 160);
+  --card: oklch(0.15 0.018 160);
+  --card-foreground: oklch(0.92 0.008 160);
+  --popover: oklch(0.14 0.016 160);
+  --popover-foreground: oklch(0.92 0.008 160);
+  --primary: oklch(0.68 0.20 25);
+  --primary-foreground: oklch(0.12 0.015 25);
+  --secondary: oklch(0.22 0.025 160);
+  --secondary-foreground: oklch(0.88 0.01 160);
+  --muted: oklch(0.20 0.022 160);
+  --muted-foreground: oklch(0.62 0.03 160);
+  --accent: oklch(0.72 0.18 160);
+  --accent-foreground: oklch(0.12 0.015 160);
+  --destructive: oklch(0.65 0.22 10);
+  --destructive-foreground: oklch(0.98 0.003 10);
+  --border: oklch(0.28 0.03 160);
+  --input: oklch(0.25 0.028 160);
+  --ring: oklch(0.72 0.18 160);
+  
+  /* Chart Tokens */
+  --chart-1: oklch(0.70 0.20 260);
+  --chart-2: oklch(0.68 0.22 340);
+  --chart-3: oklch(0.68 0.18 150);
+  --chart-4: oklch(0.72 0.20 45);
+  --chart-5: oklch(0.66 0.21 200);
+  
+  /* Sidebar Tokens */
+  --sidebar: oklch(0.10 0.012 160);
+  --sidebar-foreground: oklch(0.82 0.012 160);
+  --sidebar-primary: oklch(0.72 0.18 160);
+  --sidebar-primary-foreground: oklch(0.10 0.012 160);
+  --sidebar-accent: oklch(0.22 0.025 160);
+  --sidebar-accent-foreground: oklch(0.88 0.01 160);
+  --sidebar-border: oklch(0.28 0.03 160);
+  --sidebar-ring: oklch(0.72 0.18 160);
+}
+
+@theme inline {
+  /* Shadcn Core Mapping */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Charts Mapping */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Sidebar Mapping */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Typography */
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+
+  /* Radius */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply scroll-smooth antialiased;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans min-h-screen;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  code, pre {
+    @apply font-mono;
+  }
+
+  ::selection {
+    @apply bg-primary/20 text-primary;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/20 rounded-full hover:bg-muted-foreground/40;
+  }
+}
